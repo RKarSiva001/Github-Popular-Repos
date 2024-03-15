@@ -2,37 +2,25 @@
 import './index.css'
 
 const LanguageFilterItem = props => {
-  const {languageFiltersData, updateActiveOptionId} = props
-
-  //   const onChangeSortby = event => {
-  //     updateActiveOptionId(event.target.value)
-  //   }
-
-  const onClickSortby = event => {
-    updateActiveOptionId(event.target.value)
+  const {isActive, languageFilterDetails, setActiveLanguageFilterId} = props
+  const {id, language} = languageFilterDetails
+  const btnClassName = isActive
+    ? 'language-btn active-language-btn'
+    : 'language-btn'
+  const onClickLanguageFilter = () => {
+    setActiveLanguageFilterId(id)
   }
 
   return (
-    <div>
-      {/* <select value={activeOptionId} onChange={onChangeSortby}>
-        {languageFiltersData.map(eachOption => (
-          <option key={eachOption.optionId} value={eachOption.optionId}>
-            {eachOption.language}
-          </option>
-        ))}
-      </select> */}
-
-      {languageFiltersData.map(eachOption => (
-        <button
-          type="button"
-          key={eachOption.id}
-          value={eachOption.id}
-          onClick={onClickSortby}
-        >
-          {eachOption.language}
-        </button>
-      ))}
-    </div>
+    <li>
+      <button
+        className={btnClassName}
+        onClick={onClickLanguageFilter}
+        type="button"
+      >
+        {language}
+      </button>
+    </li>
   )
 }
 
